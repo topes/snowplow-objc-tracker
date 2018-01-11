@@ -128,6 +128,35 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     XCTAssertTrue([validator validateJson:unstructDictionary]);
 }
 
+- (void)testConsentWithdrawnEventPayloadJson {
+    SPConsentWithdrawn * event = [SPConsentWithdrawn build:^(id<SPConsentWithdrawnBuilder> builder) {
+        [builder setDescription:@"Description"];
+        [builder setDocumentId:[NSNumber numberWithInt:10]];
+        [builder setVersion:[NSNumber numberWithInt:10]];
+        [builder setAll:false];
+        [builder setName:@"Name"];
+    }];
+    
+    NSDictionary * sdj = [[event getPayload] getAsDictionary];
+
+    // Test that the SelfDescribingJson passes validation
+    XCTAssertTrue([validator validateJson:sdj]);
+}
+
+- (void)testConsentDocumentEventPayloadJson {
+    SPConsentDocument *event = [SPConsentDocument build:^(id<SPConsentDocumentBuilder> builder) {
+        [builder setDescription:@"Description"];
+        [builder setDocumentId:[NSNumber numberWithInt:10]];
+        [builder setVersion:[NSNumber numberWithInt:10]];
+        [builder setName:@"Name"];
+    }];
+    
+    NSDictionary * sdj = [[event getPayload] getAsDictionary];
+    
+    // Test that the SelfDescribingJson passes validation
+    XCTAssertTrue([validator validateJson:sdj]);
+}
+
 - (void)testPageViewEventPayloadJson {
     SPTracker * tracker = [self getTracker:@"acme.fake.url"];
     SPPageView *event = [SPPageView build:^(id<SPPageViewBuilder> builder) {
@@ -135,7 +164,6 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
         [builder setPageTitle:@"DemoPageTitle"];
         [builder setReferrer:@"DemoPageReferrer"];
     }];
-    
     // Check that the final payload passes validation
     NSDictionary * data = [[tracker getFinalPayloadWithPayload:[event getPayload] andContext:[event getContexts] andEventId:[event getEventId]] getAsDictionary];
     NSArray * dataArray = [NSArray arrayWithObject:data];
