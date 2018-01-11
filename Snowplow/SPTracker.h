@@ -32,6 +32,7 @@
 @class SPScreenView;
 @class SPTiming;
 @class SPEcommerce;
+@class SPConsentGranted;
 
 @protocol SPTrackerBuilder <NSObject>
 
@@ -134,5 +135,10 @@
  * Tracks an Ecommerce Event object.
  */
 - (void) trackEcommerceEvent:(SPEcommerce *)event;
+
+/**
+ * Tracks a Consent Granted Event object.
+ */
+- (void) trackConsentGrantedEvent:(SPConsentGranted *)event;
 
 @end

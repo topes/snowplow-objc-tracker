@@ -56,6 +56,22 @@
 - (void) setId:(NSString *)sId;
 @end
 
+@protocol SPConsentGrantedBuilder <SPEventBuilder>
+- (void) setDocumentId:(NSNumber *)documentId;
+- (void) setVersion:(NSNumber *)version;
+- (void) setName:(NSString *)name;
+- (void) setDescription:(NSString *)description;
+- (void) setExpiry:(NSString *)expiry;
+- (void) setDocuments:(NSArray *)documents;
+@end
+
+@protocol SPConsentDocumentBuilder <SPEventBuilder>
+- (void) setDocumentId:(NSNumber *)documentId;
+- (void) setVersion:(NSNumber *)version;
+- (void) setName:(NSString *)name;
+- (void) setDescription:(NSString *)description;
+@end
+
 @protocol SPTimingBuilder <SPEventBuilder>
 - (void) setCategory:(NSString *)category;
 - (void) setVariable:(NSString *)variable;
@@ -119,6 +135,21 @@
 @interface SPUnstructured : SPEvent <SPUnstructuredBuilder>
 + (instancetype) build:(void(^)(id<SPUnstructuredBuilder>builder))buildBlock;
 - (SPPayload *) getPayloadWithEncoding:(BOOL)encoding;
+@end
+
+// Consent Granted Event
+
+@interface SPConsentGranted : SPEvent <SPConsentGrantedBuilder>
++ (instancetype) build:(void(^)(id<SPConsentGrantedBuilder>builder))buildBlock;
+- (SPSelfDescribingJson *) getPayload;
+- (NSArray *) getDocuments;
+@end
+
+// Consent Document Event
+
+@interface SPConsentDocument : SPEvent <SPConsentDocumentBuilder>
++ (instancetype) build:(void(^)(id<SPConsentDocumentBuilder>builder))buildBlock;
+- (SPSelfDescribingJson *) getPayload;
 @end
 
 // ScreenView Event

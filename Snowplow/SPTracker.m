@@ -251,6 +251,19 @@
     [self addEventWithPayload:[event getPayload] andContext:[event getContexts] andEventId:[event getEventId]];
 }
 
+- (void) trackConsentGrantedEvent:(SPConsentGranted *)event {
+    NSArray * documents = [event getDocuments];
+    NSMutableArray * contexts = [event getContexts];
+    [contexts addObjectsFromArray:documents];
+    SPUnstructured * unstruct = [SPUnstructured build:^(id<SPUnstructuredBuilder> builder) {
+        [builder setEventData:[event getPayload]];
+        [builder setTimestamp:[event getTimestamp]];
+        [builder setContexts:[event contexts]];
+        [builder setEventId:[event getEventId]];
+    }];
+    [self trackUnstructuredEvent:unstruct];
+}
+
 // Event Decoration
 
 - (void) addEventWithPayload:(SPPayload *)pb andContext:(NSMutableArray *)contextArray andEventId:(NSString *)eventId {

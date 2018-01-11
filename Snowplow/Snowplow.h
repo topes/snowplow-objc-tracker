@@ -73,6 +73,8 @@ extern NSString * const kSPMobileContextSchema;
 extern NSString * const kSPDesktopContextSchema;
 extern NSString * const kSPSessionContextSchema;
 extern NSString * const kSPGeoContextSchema;
+extern NSString * const kSPConsentDocumentSchema;
+extern NSString * const kSPConsentGrantedSchema;
 
 // --- Event Keys
 
@@ -183,6 +185,15 @@ extern NSString * const kSPEcommItemCategory;
 extern NSString * const kSPEcommItemPrice;
 extern NSString * const kSPEcommItemQuantity;
 extern NSString * const kSPEcommItemCurrency;
+
+// --- Consent Granted Event
+extern NSString * const KSPCgExpiry;
+
+// --- Consent Document Event
+extern NSString * const kSPCdId;
+extern NSString * const kSPCdVersion;
+extern NSString * const kSPCdName;
+extern NSString * const KSPCdDescription;
 
 // --- Screen View Event
 
