@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = "SnowplowTracker"
+  s.name             = "TapInfluenceSnowplowTracker1"
   s.version          = "0.7.0"
   s.summary          = "Snowplow event tracker for iOS 7+. Add analytics to your iOS apps and games."
   s.description      = <<-DESC
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.screenshots      = "https://d3i6fms1cm1j0i.cloudfront.net/github-wiki/images/snowplow-logo-large.png"
   s.license          = 'Apache License, Version 2.0'
   s.author           = { "Snowplow Analytics Ltd" => "support@snowplowanalytics.com" }
-  s.source           = { :git => "https://github.com/snowplow/snowplow-objc-tracker.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/topes/snowplow-objc-tracker.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/SnowPlowData'
   s.documentation_url	= 'https://github.com/snowplow/snowplow/wiki/iOS-Tracker'
 
@@ -21,14 +21,14 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Snowplow/*.{m,h}'
   s.public_header_files = [
-    'Snowplow/Snowplow.h', 
-    'Snowplow/SPTracker.h', 
-    'Snowplow/SPEmitter.h', 
-    'Snowplow/SPSubject.h', 
-    'Snowplow/SPPayload.h', 
-    'Snowplow/SPUtilities.h', 
-    'Snowplow/SPRequestCallback.h', 
-    'Snowplow/SPEvent.h', 
+    'Snowplow/Snowplow.h',
+    'Snowplow/SPTracker.h',
+    'Snowplow/SPEmitter.h',
+    'Snowplow/SPSubject.h',
+    'Snowplow/SPPayload.h',
+    'Snowplow/SPUtilities.h',
+    'Snowplow/SPRequestCallback.h',
+    'Snowplow/SPEvent.h',
     'Snowplow/SPSelfDescribingJson.h'
   ]
 
