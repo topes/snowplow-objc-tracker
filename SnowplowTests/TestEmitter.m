@@ -44,7 +44,6 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
     NSString * protocol = @"https";
     
     SPEmitter *emitter = [SPEmitter build:^(id<SPEmitterBuilder> builder) {
-        [builder setUrlEndpoint:TEST_SERVER_EMITTER];
         [builder setHttpMethod:SPRequestPost];
         [builder setEmitRange:500];
         [builder setEmitThreadPoolSize:30];
@@ -68,13 +67,8 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
     
     // Test setting variables to new values
     
-    [emitter setUrlEndpoint:@"www.test.com"];
-    url = [[NSString alloc] initWithFormat:@"%@://www.test.com/com.snowplowanalytics.snowplow/tp2", protocol];
-    XCTAssertTrue([[[emitter urlEndpoint] absoluteString] isEqualToString:url]);
     [emitter setHttpMethod:SPRequestGet];
     XCTAssertEqual([emitter httpMethod], SPRequestGet);
-    url = [[NSString alloc] initWithFormat:@"%@://www.test.com/i", protocol];
-    XCTAssertTrue([[[emitter urlEndpoint] absoluteString] isEqualToString:url]);
     [emitter setEmitRange:1000];
     XCTAssertEqual([emitter emitRange], 1000);
     [emitter setEmitThreadPoolSize:50];

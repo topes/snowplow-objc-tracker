@@ -53,8 +53,13 @@ const NSInteger POST_STM_BYTES = 22;
 
 // SnowplowEmitter Builder
 
++ (instancetype) build {
+    return [self build:nil];
+}
+
 + (instancetype) build:(void(^)(id<SPEmitterBuilder>builder))buildBlock {
     SPEmitter* emitter = [SPEmitter new];
+    [emitter setUrlEndpointFromString:@"c.tapinfluence.com"];
     if (buildBlock) {
         buildBlock(emitter);
     }
@@ -101,7 +106,7 @@ const NSInteger POST_STM_BYTES = 22;
 
 // Required
 
-- (void) setUrlEndpoint:(NSString *)urlEndpoint {
+- (void) setUrlEndpointFromString:(NSString *)urlEndpoint {
     _url = urlEndpoint;
     if (_builderFinished) {
         [self setupUrlEndpoint];

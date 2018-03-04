@@ -94,8 +94,6 @@ NSString *protocol = @"https";
     XCTAssertEqual(_failureCount, 7);
     XCTAssertEqual([tracker.emitter getDbCount], 7);
     
-    // Update the URL and flush
-    [[tracker emitter] setUrlEndpoint:TEST_SERVER_REQUEST];
     
     [[LSNocilla sharedInstance] clearStubs];
     stubRequest(@"POST", [[NSString alloc] initWithFormat:@"%@://%@/com.snowplowanalytics.snowplow/tp2", protocol, TEST_SERVER_REQUEST]).andReturn(200);
@@ -133,7 +131,6 @@ NSString *protocol = @"https";
 
 - (SPTracker *)getTracker:(NSString *)url requestType:(enum SPRequestOptions)type {
     SPEmitter *emitter = [SPEmitter build:^(id<SPEmitterBuilder> builder) {
-        [builder setUrlEndpoint:url];
         [builder setCallback:self];
         [builder setHttpMethod:type];
     }];

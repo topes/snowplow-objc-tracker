@@ -40,9 +40,7 @@
 }
 
 - (void)testCreateTracker {
-    SPEmitter *emitter = [SPEmitter build:^(id<SPEmitterBuilder> builder) {
-        [builder setUrlEndpoint:@"not-real.com"];
-    }];
+    SPEmitter *emitter = [SPEmitter build];
     
     SPSubject * subject = [[SPSubject alloc] initWithPlatformContext:YES andGeoContext:YES];
     

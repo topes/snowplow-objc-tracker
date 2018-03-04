@@ -244,7 +244,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 
 - (SPTracker *)getTracker:(NSString *)url {
     SPEmitter *emitter = [SPEmitter build:^(id<SPEmitterBuilder> builder) {
-        [builder setUrlEndpoint:url];
+        
     }];
     SPSubject * subject = [[SPSubject alloc] initWithPlatformContext:YES andGeoContext:YES];
     SPTracker * tracker = [SPTracker build:^(id<SPTrackerBuilder> builder) {

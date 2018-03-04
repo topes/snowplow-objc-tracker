@@ -38,7 +38,6 @@ enum SPProtocol {
 
 @protocol SPEmitterBuilder <NSObject>
 
-- (void) setUrlEndpoint:(NSString *)urlEndpoint;
 - (void) setHttpMethod:(enum SPRequestOptions)method;
 - (void) setProtocol:(enum SPProtocol)protocol;
 - (void) setCallback:(id<SPRequestCallback>)callback;
@@ -53,7 +52,6 @@ enum SPProtocol {
 
 @property (readonly, nonatomic) enum    SPRequestOptions      httpMethod;
 @property (readonly, nonatomic) enum    SPProtocol            protocol;
-@property (readonly, nonatomic, retain) NSURL *               urlEndpoint;
 @property (readonly, nonatomic)         NSInteger             emitRange;
 @property (readonly, nonatomic)         NSInteger             emitThreadPoolSize;
 @property (readonly, nonatomic)         NSInteger             byteLimitGet;
@@ -64,6 +62,12 @@ enum SPProtocol {
  * Builds the Emitter using a build block of functions.
  */
 + (instancetype) build:(void(^)(id<SPEmitterBuilder>builder))buildBlock;
+
+
+/**
+ * Calls [self build:nil]
+ */
++ (instancetype) build;
 
 /**
  * Initializes a newly allocated SnowplowEmitter
